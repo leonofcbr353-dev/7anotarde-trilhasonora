@@ -1,0 +1,460 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background: #050505;
+    --surface: #0d0d0d;
+    --surface-hover: #151515;
+    --border: #202020;
+    --border-hover: #363636;
+    --text: #ffffff;
+    --secondary: #888;
+    --muted: #555;
+}
+
+body {
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+
+    background: #050505;
+    color: #fff;
+
+    font-family: "Inter", Arial, sans-serif;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 40px 20px;
+}
+
+
+/* ========================================
+   FUNDO ANIMADO
+======================================== */
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: -50%;
+
+    z-index: -2;
+
+    background:
+        repeating-linear-gradient(
+            115deg,
+            transparent 0px,
+            transparent 90px,
+            rgba(255, 255, 255, 0.025) 91px,
+            transparent 92px,
+            transparent 180px
+        );
+
+    transform: rotate(-8deg);
+
+    animation: backgroundMove 18s linear infinite;
+}
+
+body::after {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    z-index: -1;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255, 255, 255, 0.07),
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.05),
+            rgba(0, 0, 0, 0.7)
+        );
+
+    pointer-events: none;
+}
+
+@keyframes backgroundMove {
+
+    from {
+        transform: translate(0, 0) rotate(-8deg);
+    }
+
+    to {
+        transform: translate(-180px, 180px) rotate(-8deg);
+    }
+}
+
+
+/* ========================================
+   APP
+======================================== */
+
+.app {
+    width: 100%;
+    max-width: 540px;
+
+    margin: auto 0;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.header {
+    margin-bottom: 42px;
+}
+
+.eyebrow {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: var(--secondary);
+
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+}
+
+.header h1 {
+    font-size: clamp(32px, 8vw, 46px);
+    font-weight: 700;
+
+    letter-spacing: -2px;
+    line-height: 1;
+}
+
+.header p {
+    margin-top: 10px;
+
+    color: var(--secondary);
+
+    font-size: 17px;
+}
+
+
+/* ========================================
+   BOTÕES
+======================================== */
+
+.sound-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.sound-button {
+    position: relative;
+
+    width: 100%;
+    min-height: 82px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 16px 18px;
+
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    background: rgba(13, 13, 13, 0.85);
+    color: var(--text);
+
+    font-family: inherit;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.15s ease;
+}
+
+.sound-button::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 2px;
+
+    background: #fff;
+
+    opacity: 0;
+
+    transition: opacity 0.25s ease;
+}
+
+.sound-button:hover {
+    background: var(--surface-hover);
+    border-color: var(--border-hover);
+}
+
+.sound-button:hover::before {
+    opacity: 1;
+}
+
+.sound-button:active {
+    transform: scale(0.985);
+}
+
+
+/* ========================================
+   NÚMERO
+======================================== */
+
+.button-number {
+    width: 42px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 1px;
+}
+
+
+/* ========================================
+   CONTEÚDO
+======================================== */
+
+.button-content {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.button-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.button-description {
+    color: var(--secondary);
+
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+
+/* ========================================
+   ÍCONE
+======================================== */
+
+.button-icon {
+    margin-left: 15px;
+
+    color: #777;
+
+    font-size: 22px;
+    font-weight: 300;
+
+    transition:
+        transform 0.25s ease,
+        color 0.25s ease;
+}
+
+.sound-button:hover .button-icon {
+    color: #fff;
+
+    transform: translateX(3px);
+}
+
+
+/* ========================================
+   PARAR
+======================================== */
+
+.stop-button {
+    margin-top: 12px;
+
+    background: transparent;
+}
+
+.stop-button::before {
+    background: #777;
+}
+
+.stop-button .button-icon {
+    font-size: 25px;
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 36px;
+
+    color: #444;
+
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+
+/* ========================================
+   NOW PLAYING
+======================================== */
+
+.now-playing {
+    position: fixed;
+
+    top: 20px;
+    left: 50%;
+
+    width: calc(100% - 32px);
+    max-width: 420px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 14px 16px;
+
+    border: 1px solid #252525;
+    border-radius: 16px;
+
+    background: rgba(13, 13, 13, 0.92);
+
+    backdrop-filter: blur(14px);
+
+    transform: translate(-50%, -30px);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+
+    z-index: 100;
+}
+
+.now-playing.is-visible {
+    opacity: 1;
+
+    transform: translate(-50%, 0);
+}
+
+.now-playing-icon {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 12px;
+
+    border: 1px solid #292929;
+    border-radius: 10px;
+
+    color: #fff;
+
+    font-size: 18px;
+}
+
+.now-playing-content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.now-playing-label {
+    color: #666;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+}
+
+.now-playing-title {
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.ceara-logo {
+    width: 58px;
+    height: 58px;
+
+    object-fit: contain;
+
+    margin-bottom: 18px;
+
+    opacity: 0.95;
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 28px 16px;
+    }
+
+    .header {
+        margin-bottom: 32px;
+    }
+
+    .sound-button {
+        min-height: 78px;
+
+        border-radius: 16px;
+    }
+
+    .button-number {
+        width: 36px;
+    }
+
+    .button-title {
+        font-size: 15px;
+    }
+
+    .button-description {
+        font-size: 11px;
+    }
+
+    .now-playing {
+        top: 14px;
+    }
+}
